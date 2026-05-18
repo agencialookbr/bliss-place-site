@@ -193,7 +193,7 @@ function Index() {
               <div className="lg:hidden mt-12 mb-8 relative w-full max-w-[450px] mx-auto overflow-visible">
                 <Reveal>
                   <img 
-                    src="/hero-man.png" 
+                    src="/hero-man-transparent.png" 
                     alt="Especialista" 
                     className="w-full h-auto object-contain relative z-10"
                   />
@@ -246,7 +246,7 @@ function Index() {
               <Reveal>
                 <div className="relative">
                   <img 
-                    src="/hero-man.png" 
+                    src="/hero-man-transparent.png" 
                     alt="Especialista Bliss Place" 
                     className="w-full h-auto object-contain relative z-10"
                   />
