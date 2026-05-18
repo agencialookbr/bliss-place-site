@@ -33,7 +33,7 @@ export function Navbar() {
         }`}
       >
         <Link to="/" aria-label="Bliss Place início" className="flex items-center">
-          <BlissLogo variant="horizontal" textColor="#FFFFFF" size={100} />
+          <BlissLogo variant="horizontal" size={100} />
         </Link>
 
         <nav className="hidden md:flex items-center gap-7">
