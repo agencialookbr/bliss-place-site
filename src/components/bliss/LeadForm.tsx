@@ -51,7 +51,7 @@ export function LeadForm({ variant = "light", defaultProgram }: Props) {
     try {
       if (typeof gtag === "function") {
         gtag("event", "conversion", {
-          send_to: "AW-704796837/SUBSTITUA_PELO_LABEL",
+          send_to: "AW-829830575/JESpCIzJgrgcEK_r2IsD",
           value: 1.0,
           currency: "BRL",
         });
