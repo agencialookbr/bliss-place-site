@@ -1,7 +1,11 @@
 import { useState, type FormEvent } from "react";
 
-// Declara gtag como função global injetada pelo script do Google Ads/GTM
-declare function gtag(...args: unknown[]): void;
+// Declara window.gtag injetado pelo script do Google Ads
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
 
 const PROGRAMS = [
   "Dores Nunca Mais",
@@ -49,15 +53,15 @@ export function LeadForm({ variant = "light", defaultProgram }: Props) {
     // Substitua 'SUBSTITUA_PELO_LABEL' pelo label da ação "Conversão Lead"
     // encontrado em Google Ads → Metas → Ações de conversão → Detalhes da tag
     try {
-      if (typeof gtag === "function") {
-        gtag("event", "conversion", {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "conversion", {
           send_to: "AW-829830575/JESpCIzJgrgcEK_r2IsD",
           value: 1.0,
           currency: "BRL",
         });
       }
     } catch (_) {
-      // gtag não disponível — não bloqueia o fluxo
+      // window.gtag não disponível — não bloqueia o fluxo
     }
     // ────────────────────────────────────────────────────────────────────────
 
