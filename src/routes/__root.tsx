@@ -59,22 +59,6 @@ function RootShell({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
-        {/* Google tag (gtag.js) – Google Ads */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=AW-704796837"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'AW-704796837');
-              gtag('config', 'AW-829830575');
-            `,
-          }}
-        />
       </head>
       <body>
         {children}
@@ -84,6 +68,33 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+import { useEffect } from "react";
+
 function RootComponent() {
+  useEffect(() => {
+    // Evita duplicar os scripts se o componente re-renderizar
+    if (document.getElementById("gtag-script")) return;
+
+    // 1. Script gtag.js externo
+    const script1 = document.createElement("script");
+    script1.id = "gtag-script";
+    script1.async = true;
+    script1.src = "https://www.googletagmanager.com/gtag/js?id=AW-704796837";
+    document.head.appendChild(script1);
+
+    // 2. Script de inicialização inline
+    const script2 = document.createElement("script");
+    script2.id = "gtag-init";
+    script2.innerHTML = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'AW-704796837');
+      gtag('config', 'AW-829830575');
+    `;
+    document.head.appendChild(script2);
+  }, []);
+
   return <Outlet />;
 }
